@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Weather API</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <h2 class="logo">Portfolio</h2>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-item active">Home</a>
+                <a href="#team" class="nav-item">Our Team</a>
+                <a href="#projects" class="nav-item">Project Overview</a>
+                <a href="app.html" class="nav-item">Weather API</a>
+                <a href="#contact" class="nav-item">Contact Us</a>
+                <button id="themeBtn" class="theme-btn">🌙</button>
+            </div>
+            
+            <button class="menu-btn" id="menuBtn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="homePage" class="page-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1 class="hero-title">
+                    <span class="blue-text">Welcome to</span>
+                    <span>Our Website</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Discover innovative solutions and cutting-edge technology.
+                    <span class="blue-text">We create exceptional digital experiences that make a difference.</span>
+                </p>
+
+                <p class="hero-desc">
+                    Explore our talented team, groundbreaking projects, and the powerful Weather API application we've built from scratch.
+                </p>
+                
+                <div class="hero-btns">
+                    <button class="btn btn-primary" onclick="scrollToSection('team')">Get Started</button>
+                    <a href="app.html" class="btn btn-outline">View Weather App</a>
+                </div>
+                
+                <div class="arrow-down">↓</div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team" class="section">
+            <div class="container">
+                <h2>Our Team</h2>
+                <p class="section-desc">
+                    Meet the talented individuals behind our success. Our diverse team brings together
+                    expertise from various fields to deliver exceptional results.
+                </p>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="Raphaelpic.jpg" alt="Raphael Culaba">
+                        <div class="team-info">
+                            <h3>Raphael Wayne Culaba</h3>
+                            <p class="role">JavaScript Logic & API Integration</p>
+                            <p class="desc">Passionate about web development and API integration, Raphael focuses on bringing ideas to life through interactive and efficient web applications. He enjoys learning modern JavaScript frameworks and building projects that solve real-world problems.</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <img src="ACpic.jpg" alt="AC Anadon">
+                        <div class="team-info">
+                            <h3>AC Anadon</h3>
+                            <p class="role">CSS Styling & Layout</p>
+                            <p class="desc">A creative front-end enthusiast with an eye for detail, AC is dedicated to crafting visually appealing and responsive user interfaces. She believes that good design is not just about looks—it’s about creating smooth, meaningful user experiences.</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <img src="Abellanapic.jpg" alt="Arryl Abellana">
+                        <div class="team-info">
+                            <h3>Arryl Abellana</h3>
+                            <p class="role">Project Management & Documentation</p>
+                            <p class="desc">Arryl ensures that every part of the project runs smoothly—from planning to documentation. With strong leadership and organizational skills, he coordinates the team’s workflow and keeps everyone aligned with project goals.</p>
+                        </div>
+                    </div>
+
+                    <div class="team-card">
+                        <img src="Arnaizpic.jpg" alt="Sherlita Arnaiz">
+                        <div class="team-info">
+                            <h3>Sherlita Jamero Arnaiz</h3>
+                            <p class="role">HTML Structure & Semantics</p>
+                            <p class="desc">Focused on writing clean and well-structured code, Sherlita is responsible for ensuring that every page follows proper HTML semantics and accessibility standards. She values simplicity, clarity, and teamwork in every project she contributes to.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Overview -->
+        <section id="projects" class="section gray-bg">
+            <div class="container">
+                <h2>Project Overview</h2>
+                <p class="section-desc">
+                    Our Weather API application is a cutting-edge solution that provides real-time weather
+                    information with an intuitive and beautiful interface.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-box">
+                        <div class="icon blue1">☁</div>
+                        <h3>Real-Time Weather Data</h3>
+                        <p>Get accurate, up-to-date weather information for any location worldwide.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="icon blue2">⚡</div>
+                        <h3>Clean API Integration</h3>
+                        <p>Built with modern technologies for a robust, type-safe experience.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="icon blue3">🚀</div>
+                        <h3>Lightning Fast</h3>
+                        <p>Optimized performance ensures instant weather updates and smooth interactions.</p>
+                    </div>
+
+                    <div class="feature-box">
+                        <div class="icon blue4">📊</div>
+                        <h3>Comprehensive Data</h3>
+                        <p>Access temperature, humidity, wind speed, and detailed forecasts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+<section id="contact" class="section gray-bg">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <p class="section-desc">
+            Have a question or want to work together? We'd love to hear from you.
+        </p>
+
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon blue1">📧</div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>contact@portfolio.com</p>
+                        <p>support@portfolio.com</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon blue2">📞</div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                        <p>Mon-Fri 9am-6pm EST</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon blue3">📍</div>
+                    <div>
+                        <h4>Office</h4>
+                        <p>123 Business Street</p>
+                        <p>New York, NY 10001</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-box">
+                <div class="card">
+                    <h3>Send us a Message</h3>
+                    <p class="form-desc">Fill out the form below and we'll get back to you soon.</p>
+
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                            <input type="email" id="email" placeholder="your.email@example.com" required>
+                        </div>
+                        <input type="text" id="subject" placeholder="Subject" required>
+                        <textarea id="message" placeholder="Your Message" rows="6" required></textarea>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="successMsg" class="success-msg">
+                        <div class="success-icon">✓</div>
+                        <h3>Message Sent!</h3>
+                        <p>Thank you for contacting us. We'll be in touch soon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3>Portfolio</h3>
+                    <p>Building innovative solutions with cutting-edge technology.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#team">Our Team</a>
+                    <a href="#projects">Project Overview</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <a href="#">Documentation</a>
+                    <a href="#">API Reference</a>
+                    <a href="#">Support</a>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <p>Twitter | LinkedIn | GitHub</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Portfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

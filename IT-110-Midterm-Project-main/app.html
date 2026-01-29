@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <h2 class="logo">Portfolio</h2>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-item">🏠 Back to Portfolio</a>
+                <a href="#weather" class="nav-item active">Weather App</a>
+                <button id="themeBtn" class="theme-btn">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Weather Section -->
+    <section id="weather" class="section weather-section">
+        <div class="container">
+            <h2>🌦️ Weather API Application</h2>
+            <p class="section-desc">
+                Search for any city to get real-time weather information using the OpenWeatherMap API.
+            </p>
+
+            <div class="weather-container">
+                <!-- Search Box -->
+                <div class="card">
+                    <input type="text" id="cityInput" placeholder="Enter city name (e.g., London, Tokyo, Manila)">
+                    <button class="btn btn-primary" onclick="searchWeather()">Search</button>
+                    <p id="weatherError" class="error-msg"></p>
+                </div>
+
+                <!-- Weather Display -->
+                <div id="weatherDisplay" style="display: none;">
+                    <div class="card weather-card">
+                        <h3 id="cityName"></h3>
+                        <p id="weatherCondition"></p>
+                        <div class="weather-main">
+                            <div class="temp">
+                                <span id="temperature"></span><span class="deg">°C</span>
+                            </div>
+                            <div id="weatherIcon" class="weather-icon"></div>
+                        </div>
+                    </div>
+
+                    <div class="weather-details">
+                        <div class="detail-card">
+                            <p>💧 Humidity</p>
+                            <h4 id="humidity"></h4>
+                        </div>
+                        <div class="detail-card">
+                            <p>💨 Wind Speed</p>
+                            <h4 id="windSpeed"></h4>
+                        </div>
+                        <div class="detail-card">
+                            <p>👁 Visibility</p>
+                            <h4 id="visibility"></h4>
+                        </div>
+                        <div class="detail-card">
+                            <p>🌡 Pressure</p>
+                            <h4 id="pressure"></h4>
+                        </div>
+                        <div class="detail-card">
+                            <p>🌅 Sunrise</p>
+                            <h4 id="sunrise"></h4>
+                        </div>
+                        <div class="detail-card">
+                            <p>🌇 Sunset</p>
+                            <h4 id="sunset"></h4>
+                        </div>
+                    </div>
+
+                    <!-- Forecast Placeholder (optional later) -->
+                    <div class="card">
+                        <h3>5-Day Forecast (Coming Soon)</h3>
+                        <div id="forecast" class="forecast-grid"></div>
+                    </div>
+                </div>
+
+                <div class="card note-card">
+                    <p><strong>Note:</strong> This app fetches real-time data from the OpenWeatherMap API. Please ensure your internet connection is active.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>Portfolio</h3>
+        <p>Creating digital experiences with innovation and creativity. Explore our projects and discover what we can build together.</p>
+      </div>
+
+      <div>
+        <h4>Links</h4>
+        <a href="index.html#home">Home</a>
+        <a href="index.html#team">Team</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+
+      <div>
+        <h4>Resources</h4>
+        <a href="#">Documentation</a>
+        <a href="#">Blog</a>
+        <a href="#">Support</a>
+        <a href="#">FAQs</a>
+      </div>
+
+      <div>
+        <h4>Follow Us</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Portfolio | Built with <strong>OpenWeatherMap API</strong></p>
+    </div>
+  </div>
+</footer>
+
+
+    <script>
+    async function searchWeather() {
+    const city = document.getElementById('cityInput').value.trim();
+    const errorMsg = document.getElementById('weatherError');
+    const weatherDisplay = document.getElementById('weatherDisplay');
+
+    if (!city) {
+        errorMsg.textContent = 'Please enter a city name.';
+        weatherDisplay.style.display = 'none';
+        return;
+    }
+
+    const apiKey = 'da419ced5e5c13eb83072224d1e23862';
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    try {
+        // Check if user has internet
+        if (!navigator.onLine) {
+            throw new Error('No internet connection');
+        }
+
+        errorMsg.textContent = 'Fetching weather data...';
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            if (response.status === 404) {
+                throw new Error('City not found');
+            } else {
+                throw new Error('API request failed');
+            }
+        }
+
+        const data = await response.json();
+        errorMsg.textContent = ''; // Clear any previous errors
+
+        // Show weather data
+        weatherDisplay.style.display = 'block';
+        document.getElementById('cityName').textContent = `${data.name}, ${data.sys.country}`;
+        document.getElementById('weatherCondition').textContent = data.weather[0].main;
+        document.getElementById('temperature').textContent = Math.round(data.main.temp);
+        document.getElementById('humidity').textContent = `${data.main.humidity}%`;
+        document.getElementById('windSpeed').textContent = `${data.wind.speed} m/s`;
+        document.getElementById('visibility').textContent = `${(data.visibility / 1000).toFixed(1)} km`;
+        document.getElementById('pressure').textContent = `${data.main.pressure} hPa`;
+
+        const sunrise = new Date(data.sys.sunrise * 1000);
+        const sunset = new Date(data.sys.sunset * 1000);
+        document.getElementById('sunrise').textContent = sunrise.toLocaleTimeString();
+        document.getElementById('sunset').textContent = sunset.toLocaleTimeString();
+
+        // Weather icon
+        const condition = data.weather[0].main.toLowerCase();
+        const icon = document.getElementById('weatherIcon');
+        if (condition.includes("cloud")) icon.textContent = "☁️";
+        else if (condition.includes("rain")) icon.textContent = "🌧️";
+        else if (condition.includes("clear")) icon.textContent = "☀️";
+        else if (condition.includes("snow")) icon.textContent = "❄️";
+        else icon.textContent = "🌤️";
+
+    } catch (error) {
+        console.error(error);
+        weatherDisplay.style.display = 'none';
+
+        if (error.message === 'No internet connection') {
+            errorMsg.textContent = '⚠️ No internet connection. Please check your network and try again.';
+        } else if (error.message === 'City not found') {
+            errorMsg.textContent = '❌ City not found. Please check the spelling and try again.';
+        } else if (error.message === 'API request failed') {
+            errorMsg.textContent = '🚫 Could not fetch data. Please try again later.';
+        } else {
+            errorMsg.textContent = '⚠️ Something went wrong. Please try again.';
+        }
+    }
+}
+(function() {
+  const themeBtn = document.getElementById('themeBtn');
+
+  // Initialize button text based on stored preference or current body class
+  const saved = localStorage.getItem('theme'); // 'dark' or 'light' or null
+  if (saved === 'dark') document.body.classList.add('dark');
+  else if (saved === 'light') document.body.classList.remove('dark');
+
+  // Set initial icon
+  if (themeBtn) {
+    themeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      themeBtn.textContent = isDark ? '☀️' : '🌙';
+      // persist user choice
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+  }
+})();   
+    </script>
+</body>
+</html>
